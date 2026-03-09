@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tazas Creativas SV</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+/* HEADER */
+
+header{
+background:#0d1b2a;
+color:white;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+}
+
+.cart{
+background:#0077ff;
+padding:6px 12px;
+border-radius:20px;
+}
+
+/* HERO */
+
+.hero{
+height:350px;
+background:url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:36px;
+font-weight:bold;
+text-shadow:2px 2px 10px black;
+}
+
+/* SEARCH */
+
+.search{
+text-align:center;
+margin:30px;
+}
+
+.search input{
+padding:10px;
+width:300px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+/* PRODUCTS */
+
+.container{
+padding:40px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.product{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+text-align:center;
+transition:0.3s;
+}
+
+.product:hover{
+transform:translateY(-5px);
+}
+
+.product img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.price{
+font-size:22px;
+color:#2e7d32;
+margin:10px 0;
+}
+
+button{
+background:#0077ff;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* CART */
+
+.cart-box{
+background:white;
+padding:25px;
+margin-top:40px;
+border-radius:10px;
+}
+
+/* PAYMENT */
+
+.payment{
+display:none;
+background:white;
+padding:25px;
+margin-top:20px;
+border-radius:10px;
+}
+
+.success{
+display:none;
+background:#2e7d32;
+color:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+text-align:center;
+}
+
+/* REVIEWS */
+
+.reviews{
+background:white;
+padding:40px;
+margin-top:40px;
+text-align:center;
+}
+
+.review-container{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:20px;
+}
+
+.review{
+max-width:250px;
+}
+
+/* TRACK ORDER */
+
+.track{
+background:white;
+padding:30px;
+margin-top:40px;
+text-align:center;
+border-radius:10px;
+}
+
+/* ADMIN */
+
+.admin{
+background:white;
+padding:30px;
+margin-top:40px;
+border-radius:10px;
+}
+
+.stats{
+background:#eef3ff;
+padding:15px;
+margin-top:15px;
+border-radius:10px;
+}
+
+/* FOOTER */
+
+footer{
+background:#0d1b2a;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>☕ Tazas Creativas SV</h2>
+
+<nav>
+
+<a href="#">Inicio</a>
+<a href="#catalogo">Productos</a>
+<a href="#admin">Administración</a>
+
+<span class="cart">🛒 <span id="count">0</span></span>
+
+</nav>
+
+</header>
+
+<div class="hero">
+Tienda de Tazas Personalizadas
+</div>
+
+<div class="search">
+
+<input type="text" id="search" placeholder="Buscar producto..." onkeyup="buscar()">
+
+</div>
+
+<div class="container" id="catalogo">
+
+<h2>Catálogo de Productos</h2>
+
+<div class="products" id="productos">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1606791405792-1004f1718d0c">
+<h3>Taza Personalizada</h3>
+<p class="price">$8</p>
+<button onclick="addToCart('Taza Personalizada',8)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1511920170033-f8396924c348">
+<h3>Taza Gamer</h3>
+<p class="price">$9</p>
+<button onclick="addToCart('Taza Gamer',9)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3">
+<h3>Taza Parejas</h3>
+<p class="price">$10</p>
+<button onclick="addToCart('Taza Parejas',10)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1521302080371-2f39b9b6d9a4">
+<h3>Taza Motivacional</h3>
+<p class="price">$7</p>
+<button onclick="addToCart('Taza Motivacional',7)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1587731556938-38755b4803a6">
+<h3>Taza Cumpleaños</h3>
+<p class="price">$8</p>
+<button onclick="addToCart('Taza Cumpleaños',8)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
+<h3>Taza Corporativa</h3>
+<p class="price">$11</p>
+<button onclick="addToCart('Taza Corporativa',11)">Agregar</button>
+</div>
+
+</div>
+
+<div class="cart-box">
+
+<h2>🛒 Carrito</h2>
+
+<ul id="cart"></ul>
+
+<h3>Total: $<span id="total">0</span></h3>
+
+<button onclick="showPayment()">Proceder al pago</button>
+
+</div>
+
+<div class="payment" id="payment">
+
+<h2>Datos del pedido</h2>
+
+<input type="text" id="cliente" placeholder="Nombre del cliente">
+
+<select id="metodo">
+<option>Tarjeta de crédito</option>
+<option>Transferencia bancaria</option>
+<option>PayPal</option>
+<option>Efectivo contra entrega</option>
+</select>
+
+<input type="text" id="direccion" placeholder="Dirección de envío">
+
+<button onclick="pay()">Confirmar pedido</button>
+
+</div>
+
+<div class="success" id="success"></div>
+
+</div>
+
+<div class="reviews">
+
+<h2>⭐ Opiniones de Clientes</h2>
+
+<div class="review-container">
+
+<div class="review">
+⭐ ⭐ ⭐ ⭐ ⭐  
+<p>Excelente calidad y entrega rápida.</p>
+</div>
+
+<div class="review">
+⭐ ⭐ ⭐ ⭐ ⭐  
+<p>Las tazas personalizadas quedaron perfectas.</p>
+</div>
+
+<div class="review">
+⭐ ⭐ ⭐ ⭐ ⭐  
+<p>Muy buen servicio y precios accesibles.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="track">
+
+<h2>📦 Seguimiento de Pedido</h2>
+
+<input type="text" id="trackInput" placeholder="Ingrese número de orden">
+
+<button onclick="track()">Buscar pedido</button>
+
+<p id="trackResult"></p>
+
+</div>
+
+<div class="container admin" id="admin">
+
+<h2>⚙️ Panel de Administración</h2>
+
+<ul id="orders"></ul>
+
+<div class="stats">
+
+<p>Total ventas: $<span id="ventas">0</span></p>
+<p>Total pedidos: <span id="pedidos">0</span></p>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>Tazas Creativas SV © 2026</p>
+
+</footer>
+
+<script>
+
+let total=0;
+let count=0;
+let ventas=0;
+let pedidos=0;
+let orderDB={};
+
+function addToCart(product,price){
+
+let cart=document.getElementById("cart");
+
+let item=document.createElement("li");
+
+item.textContent=product+" - $"+price;
+
+cart.appendChild(item);
+
+total+=price;
+count++;
+
+document.getElementById("total").textContent=total;
+document.getElementById("count").textContent=count;
+
+}
+
+function showPayment(){
+
+document.getElementById("payment").style.display="block";
+
+}
+
+function pay(){
+
+let cliente=document.getElementById("cliente").value;
+let direccion=document.getElementById("direccion").value;
+let metodo=document.getElementById("metodo").value;
+
+let orderNumber=Math.floor(Math.random()*100000);
+
+orderDB[orderNumber]="En preparación";
+
+let orders=document.getElementById("orders");
+
+let item=document.createElement("li");
+
+item.textContent="Pedido #"+orderNumber+" - Cliente: "+cliente+" - Pago: "+metodo;
+
+orders.appendChild(item);
+
+ventas+=total;
+pedidos++;
+
+document.getElementById("ventas").textContent=ventas;
+document.getElementById("pedidos").textContent=pedidos;
+
+document.getElementById("success").innerHTML="✅ Pedido confirmado. Número de orden: "+orderNumber;
+
+document.getElementById("payment").style.display="none";
+document.getElementById("success").style.display="block";
+
+}
+
+function buscar(){
+
+let input=document.getElementById("search").value.toLowerCase();
+
+let products=document.querySelectorAll(".product");
+
+products.forEach(product=>{
+
+let name=product.innerText.toLowerCase();
+
+product.style.display=name.includes(input)?"block":"none";
+
+});
+
+}
+
+function track(){
+
+let id=document.getElementById("trackInput").value;
+
+let result=document.getElementById("trackResult");
+
+if(orderDB[id]){
+
+result.innerHTML="Estado del pedido: "+orderDB[id];
+
+}else{
+
+result.innerHTML="Pedido no encontrado";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
